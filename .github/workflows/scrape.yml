@@ -39,7 +39,7 @@ jobs:
 
       - name: Test stealth browser (shows the real error if it is broken)
         continue-on-error: true
-        run: python india_news_scraper.py --test-stealth https://www.indiatvnews.com/
+        run: python news_scraper_v2.py --test-stealth https://www.indiatvnews.com/
 
       - name: Run
         env:
