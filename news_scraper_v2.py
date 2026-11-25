@@ -29,7 +29,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
-from urllib.parse import urldefrag, urljoin, urlparse
+from urllib.parse import unquote, urldefrag, urljoin, urlparse
 
 import feedparser
 import trafilatura
@@ -137,21 +137,34 @@ def is_national(item):
 
 
 def looks_like_article(path):
-    """Heuristic when a site has no URL pattern: long slug or a long numeric id."""
-    p = path.lower()
+    """Heuristic when a site has no URL pattern: long slug or a long numeric id.
+    URLs are decoded first so native-script section names (short) are rejected."""
+    p = unquote(path).lower()
     if p in ("", "/") or NAV_PATH.search(p):
         return False
+    if re.search(r"\d{5,}", p):
+        return True
     last = re.sub(r"\.(html|htm|cms|php|aspx|ece|amp)$", "", p.rstrip("/").rsplit("/", 1)[-1])
-    return bool(re.search(r"\d{5,}", p)) or (last.count("-") >= 3 and len(last) >= 20) \
-        or ("%" in last and len(last) >= 30)
+    return last.count("-") >= 3 and len(last) >= 25
+
+
+def strip_site_suffix(title, site_name):
+    """'Story headline | Public TV - Latest Kannada News' -> 'Story headline'"""
+    if not title or " | " not in title:
+        return title
+    head, tail = title.rsplit(" | ", 1)
+    tokens = [t for t in re.split(r"\W+", site_name.lower()) if len(t) > 2]
+    if len(head) >= 15 and (any(t in tail.lower() for t in tokens) or "news" in tail.lower()):
+        return head.strip()
+    return title
 
 
 # ------------------------------------------------------------------ fetching
-def fast_get(url, use_proxy=False, timeout=25, raw=False):
+def fast_get(url, use_proxy=False, timeout=25, raw=False, insecure=False):
     proxies = {"http": PROXY, "https": PROXY} if (PROXY and use_proxy) else None
     try:
         r = cffi.get(url, headers=HEADERS, impersonate="chrome", timeout=timeout,
-                     proxies=proxies, allow_redirects=True)
+                     proxies=proxies, allow_redirects=True, verify=not insecure)
         return r.status_code, (r.content if raw else r.text)
     except Exception as e:
         return type(e).__name__, None
@@ -189,7 +202,7 @@ def stealth_get(url, use_proxy=False):
 def fetch_page(url, site, stealth_ok=True, raw=False):
     """Returns (status, body, how) where how is 'fast', 'stealth' or 'blocked'."""
     use_proxy = bool(site.get("proxy"))
-    st, body = fast_get(url, use_proxy, raw=raw)
+    st, body = fast_get(url, use_proxy, raw=raw, insecure=bool(site.get("insecure")))
     if not looks_blocked(st, body):
         return st, body, "fast"
     if stealth_ok:
@@ -285,7 +298,8 @@ def extract_links(base, body, pattern, limit=60, auto=False):
         if href in seen:
             continue
         seen.add(href)
-        out.append({"url": href, "title": a.get_text(" ", strip=True) or None})
+        out.append({"url": href, "title": a.get_text(" ", strip=True) or None,
+                    "auto": bool(auto and not rx)})
         if len(out) >= limit:
             break
     return out
@@ -464,6 +478,13 @@ def build_article(item, site, budget):
     published = ld.get("datePublished") or (meta(soup, "article:published_time") if soup else None) or item.get("published")
     updated = ld.get("dateModified") or (meta(soup, "article:modified_time") if soup else None) or item.get("updated") or published
 
+    if item.get("auto"):  # guessed link: make sure it really is an article, not a menu/section/quote page
+        if html:
+            if not published and len(content or "") < 400:
+                return None
+        elif len(item.get("title") or "") < 25:
+            return None
+
     art = {
         "source": site["name"],
         "article_id": make_id(url),
@@ -483,6 +504,7 @@ def build_article(item, site, budget):
     }
     for k in ("title", "description", "author"):
         art[k] = clean_text(art[k])
+    art["title"] = strip_site_suffix(art["title"], site["name"])
     return art
 
 
@@ -527,7 +549,10 @@ def main():
     cfg = json.loads(Path(args.config).read_text(encoding="utf-8"))
     sites = cfg.get("sites", cfg)
     keys = [k.strip() for k in args.only.split(",")] if args.only else list(sites)
-    keys = [k for k in keys if k in sites]
+    keys = [k for k in keys if k in sites and not sites[k].get("disabled")]
+    off = [sites[k]["name"] for k in sites if sites[k].get("disabled")]
+    if off:
+        print(f"Disabled in config (skipped): {', '.join(off)}")
 
     # Phase 1: fast discovery, in parallel
     print(f"\nPhase 1: testing {len(keys)} sites with fast requests...")
@@ -569,6 +594,9 @@ def main():
     out = Path(args.output)
     articles = json.loads(out.read_text(encoding="utf-8")) if out.exists() else []
     seen = {a["article_id"] for a in articles}
+    rej_path = Path("rejected_urls.json")
+    rejected = set(json.loads(rej_path.read_text(encoding="utf-8"))) if rej_path.exists() else set()
+    seen |= rejected
     new_count = 0
     for k in ok:
         site, budget, taken = sites[k], {"left": args.stealth_limit if stealth_available else 0}, 0
@@ -580,12 +608,16 @@ def main():
                 continue
             art = build_article(item, site, budget)
             time.sleep(args.delay)
+            if art is None:  # not a real article (section/menu/quote page)
+                rejected.add(make_id(item["url"]))
+                continue
             articles.append(art)
             seen.add(art["article_id"])
             taken += 1
             new_count += 1
             print(f"  + {art['title']}{'' if art['full_text_fetched'] else ' (metadata only)'}")
         out.write_text(json.dumps(articles, ensure_ascii=False, indent=2), encoding="utf-8")
+        rej_path.write_text(json.dumps(sorted(rejected)), encoding="utf-8")
 
     print(f"\nDone. {new_count} new, {len(articles)} total -> {out}")
 
