@@ -2,14 +2,14 @@ name: scrape-news
 
 on:
   schedule:
-    - cron: "0 */4 * * *"        # every 4 hours (many sites; keeps runs from overlapping)
+    - cron: "0 */4 * * *"        # every 4 hours
   workflow_dispatch:
     inputs:
       mode:
-        description: "check = only test all sites and write site_report.json; scrape = fetch articles"
+        description: "check = only test all sites and write site_report.json; scrape = fetch articles and write news.json"
         type: choice
-        options: [check, scrape]
-        default: check
+        options: [scrape, check]
+        default: scrape
 
 permissions:
   contents: write
@@ -33,7 +33,13 @@ jobs:
         run: pip install curl_cffi feedparser trafilatura beautifulsoup4 lxml "scrapling[fetchers]"
 
       - name: Install Scrapling stealth browser
-        run: scrapling install || echo "Scrapling browser install failed; stealth fallback will be skipped"
+        run: |
+          scrapling install || echo "scrapling install failed"
+          python -m playwright install-deps chromium || echo "install-deps failed"
+
+      - name: Test stealth browser (shows the real error if it is broken)
+        continue-on-error: true
+        run: python india_news_scraper.py --test-stealth https://www.indiatvnews.com/
 
       - name: Run
         env:
@@ -45,10 +51,21 @@ jobs:
             python news_scraper_v2.py --limit 3
           fi
 
+      - name: Save results as a downloadable artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-results
+          path: |
+            news.json
+            site_report.json
+          if-no-files-found: ignore
+
       - name: Commit results
         run: |
           git config user.name "news-bot"
           git config user.email "news-bot@users.noreply.github.com"
-          git add -f news.json site_report.json 2>/dev/null || true
+          if [ -f news.json ]; then git add -f news.json; fi
+          if [ -f site_report.json ]; then git add -f site_report.json; fi
           git diff --staged --quiet || git commit -m "Update $(date -u +'%Y-%m-%d %H:%M')"
           git push
