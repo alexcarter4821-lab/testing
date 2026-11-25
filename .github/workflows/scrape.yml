@@ -40,9 +40,9 @@ jobs:
           MODE: ${{ github.event.inputs.mode || 'scrape' }}
         run: |
           if [ "$MODE" = "check" ]; then
-            python india_news_scraper.py --check
+            python news_scraper_v2.py --check
           else
-            python india_news_scraper.py --limit 3
+            python news_scraper_v2.py --limit 3
           fi
 
       - name: Commit results
