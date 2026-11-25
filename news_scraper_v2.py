@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
 Scrape latest news from Indian news sites -> news.json  (v2)
-
+ 
 Install:
     pip install curl_cffi feedparser trafilatura beautifulsoup4 lxml requests
-
+ 
 Run:
     python news_scraper_v2.py --limit 10 --output news.json --delay 2
-
+ 
 What changed vs v1:
   * Fetches with curl_cffi (impersonates a real Chrome TLS fingerprint) to avoid
     "Connection reset by peer" blocks. Falls back to requests if not installed.
@@ -20,6 +20,7 @@ What changed vs v1:
 """
 import argparse
 import hashlib
+import html as htmllib
 import json
 import re
 import time
@@ -28,11 +29,11 @@ from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from urllib.parse import urldefrag
-
+ 
 import feedparser
 import trafilatura
 from bs4 import BeautifulSoup
-
+ 
 try:
     from curl_cffi import requests as http
     IMPERSONATE = {"impersonate": "chrome"}
@@ -41,7 +42,7 @@ except ImportError:
     import requests as http
     IMPERSONATE = {}
     print("curl_cffi not installed; using requests (more sites will block you).")
-
+ 
 # type: "rss" or "sitemap". VERIFY URLs in a browser if one returns 0 entries.
 SOURCES = [
     {"source": "India TV", "type": "sitemap", "category": "news",
@@ -56,8 +57,8 @@ SOURCES = [
      "url": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms"},
     {"source": "The Hindu", "type": "rss", "category": "national",
      "url": "https://www.thehindu.com/news/national/feeder/default.rss"},
-    {"source": "Indian Express", "type": "rss", "category": "latest",
-     "url": "https://indianexpress.com/feed/"},
+    {"source": "Indian Express", "type": "rss", "category": "india",
+     "url": "https://indianexpress.com/section/india/feed/"},
     {"source": "Hindustan Times", "type": "rss", "category": "india-news",
      "url": "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml"},
     {"source": "ABP Live", "type": "rss", "category": "india",
@@ -65,18 +66,18 @@ SOURCES = [
     {"source": "TV9 Hindi", "type": "rss", "category": "general",
      "url": "https://www.tv9hindi.com/feed/gn"},
 ]
-
+ 
 HEADERS = {"Accept-Language": "en-IN,en;q=0.9,hi;q=0.8"}
-
+ 
 import os
 # Set with --proxy or env var, e.g. http://user:pass@host:port
 PROXY = os.environ.get("SCRAPER_PROXY")
-
-
+ 
+ 
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
-
-
+ 
+ 
 def to_iso(value):
     if not value:
         return None
@@ -89,16 +90,28 @@ def to_iso(value):
         return parsedate_to_datetime(s).isoformat()
     except (TypeError, ValueError):
         return s
-
-
+ 
+ 
 def clean_url(url):
     return urldefrag(url.strip())[0]
-
-
+ 
+ 
+def clean_text(s):
+    """Fix titles like &amp;#039; and &#8230; (feeds are often double-escaped)."""
+    if not s:
+        return s
+    for _ in range(3):
+        new = htmllib.unescape(s)
+        if new == s:
+            break
+        s = new
+    return s.strip()
+ 
+ 
 def make_id(url):
     return hashlib.sha1(clean_url(url).encode("utf-8")).hexdigest()[:16]
-
-
+ 
+ 
 def get(url, retries=2, timeout=25, as_bytes=False):
     for attempt in range(retries + 1):
         try:
@@ -114,8 +127,27 @@ def get(url, retries=2, timeout=25, as_bytes=False):
             print(f"  ! error ({type(e).__name__}) attempt {attempt + 1}: {url[:90]}")
         time.sleep(1.5 * (attempt + 1))
     return None
-
-
+ 
+ 
+def get_article(url, timeout=25):
+    """Try several browser fingerprints + a Google referer before giving up."""
+    hdrs = dict(HEADERS, Referer="https://www.google.com/")
+    proxies = {"http": PROXY, "https": PROXY} if PROXY else None
+    last = None
+    for profile in ("chrome", "safari", "firefox"):
+        try:
+            kw = {"impersonate": profile} if IMPERSONATE else {}
+            r = http.get(url, headers=hdrs, timeout=timeout, proxies=proxies, **kw)
+            if r.status_code == 200:
+                return r.text
+            last = r.status_code
+        except Exception as e:
+            last = type(e).__name__
+        time.sleep(1)
+    print(f"  ! article blocked ({last}): {url[:90]}")
+    return None
+ 
+ 
 # ---------- listing readers: return list of dicts {url,title,summary,...} ----------
 def read_rss(cfg):
     raw = get(cfg["url"], as_bytes=True)
@@ -141,8 +173,8 @@ def read_rss(cfg):
             "image": image,
         })
     return items
-
-
+ 
+ 
 def read_sitemap(cfg):
     raw = get(cfg["url"], as_bytes=True)
     if not raw:
@@ -152,10 +184,10 @@ def read_sitemap(cfg):
     except ET.ParseError as e:
         print(f"  ! sitemap parse error: {e}")
         return []
-
+ 
     def local(tag):
         return tag.rsplit("}", 1)[-1]
-
+ 
     items = []
     for url_el in root.iter():
         if local(url_el.tag) != "url":
@@ -177,8 +209,8 @@ def read_sitemap(cfg):
     # newest first
     items.sort(key=lambda x: x.get("published") or "", reverse=True)
     return items
-
-
+ 
+ 
 # ---------- article parsing ----------
 def parse_jsonld(soup):
     for tag in soup.find_all("script", type="application/ld+json"):
@@ -198,24 +230,24 @@ def parse_jsonld(soup):
                 if "Article" in t:
                     return it
     return {}
-
-
+ 
+ 
 def name_of(x):
     if isinstance(x, list):
         return ", ".join(filter(None, (name_of(i) for i in x))) or None
     if isinstance(x, dict):
         return x.get("name")
     return x if isinstance(x, str) else None
-
-
+ 
+ 
 def image_of(x):
     if isinstance(x, list) and x:
         x = x[0]
     if isinstance(x, dict):
         return x.get("url")
     return x if isinstance(x, str) else None
-
-
+ 
+ 
 def meta(soup, *names):
     for n in names:
         tag = (soup.find("meta", attrs={"property": n})
@@ -223,8 +255,8 @@ def meta(soup, *names):
         if tag and tag.get("content"):
             return tag["content"].strip()
     return None
-
-
+ 
+ 
 def detect_language(html_lang, text):
     if text:
         deva = len(re.findall(r"[\u0900-\u097F]", text))
@@ -233,34 +265,34 @@ def detect_language(html_lang, text):
     if html_lang:
         return html_lang.split("-")[0].lower()
     return "en"
-
-
+ 
+ 
 def build_article(item, cfg):
     url = item["url"]
-    html = get(url)
+    html = get_article(url)
     soup = BeautifulSoup(html, "lxml") if html else None
     ld = parse_jsonld(soup) if soup else {}
-
+ 
     content = None
     if html:
         content = trafilatura.extract(html, include_comments=False, include_tables=False)
     content = content or ld.get("articleBody") or item.get("summary")
-
+ 
     category = ld.get("articleSection")
     if isinstance(category, list):
         category = ", ".join(category)
     if soup:
         category = category or meta(soup, "article:section")
     category = category or cfg["category"]
-
+ 
     html_lang = None
     if soup and soup.find("html"):
         html_lang = soup.find("html").get("lang")
-
+ 
     published = ld.get("datePublished") or (meta(soup, "article:published_time") if soup else None) or item.get("published")
     updated = ld.get("dateModified") or (meta(soup, "article:modified_time") if soup else None) or item.get("updated") or published
-
-    return {
+ 
+    art = {
         "source": cfg["source"],
         "article_id": make_id(url),
         "title": (ld.get("headline") or (meta(soup, "og:title") if soup else None) or item.get("title") or "").strip() or None,
@@ -276,8 +308,11 @@ def build_article(item, cfg):
         "scraped_date": now_iso(),
         "full_text_fetched": bool(html),
     }
-
-
+    for k in ("title", "description", "author"):
+        art[k] = clean_text(art[k])
+    return art
+ 
+ 
 def load_existing(path):
     if path.exists():
         try:
@@ -285,8 +320,8 @@ def load_existing(path):
         except json.JSONDecodeError:
             print("Existing JSON corrupt, starting fresh.")
     return []
-
-
+ 
+ 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", default="news.json")
@@ -295,17 +330,17 @@ def main():
     ap.add_argument("--proxy", default=None,
                     help="e.g. http://user:pass@host:port (use an Indian IP)")
     args = ap.parse_args()
-
+ 
     global PROXY
     if args.proxy:
         PROXY = args.proxy
     print(f"Proxy: {'enabled' if PROXY else 'none'}")
-
+ 
     out = Path(args.output)
     articles = load_existing(out)
     seen = {a["article_id"] for a in articles}
     new_count = 0
-
+ 
     for cfg in SOURCES:
         print(f"\n[{cfg['source']}] ({cfg['type']}) {cfg['url']}")
         items = read_sitemap(cfg) if cfg["type"] == "sitemap" else read_rss(cfg)
@@ -327,10 +362,11 @@ def main():
             taken += 1
             flag = "" if art["full_text_fetched"] else " (metadata only)"
             print(f"  + {art['title']}{flag}")
-
+ 
     out.write_text(json.dumps(articles, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nDone. {new_count} new, {len(articles)} total -> {out}")
-
-
+ 
+ 
 if __name__ == "__main__":
     main()
+ 
