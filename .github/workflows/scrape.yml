@@ -2,15 +2,26 @@ name: scrape-news
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 minutes (GitHub may delay runs a few minutes)
-  workflow_dispatch:          # lets you click "Run workflow" manually
+    - cron: "0 */4 * * *"        # every 4 hours (many sites; keeps runs from overlapping)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "check = only test all sites and write site_report.json; scrape = fetch articles"
+        type: choice
+        options: [check, scrape]
+        default: check
 
 permissions:
-  contents: write             # needed to commit news.json back to the repo
+  contents: write
+
+concurrency:
+  group: scrape-news
+  cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
 
@@ -19,18 +30,25 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install curl_cffi feedparser trafilatura beautifulsoup4 lxml requests
+        run: pip install curl_cffi feedparser trafilatura beautifulsoup4 lxml "scrapling[fetchers]"
 
-      - name: Check which sites are reachable from GitHub's IP
-        run: python check_access.py || true
+      - name: Install Scrapling stealth browser
+        run: scrapling install || echo "Scrapling browser install failed; stealth fallback will be skipped"
 
-      - name: Run scraper
-        run: python news_scraper_v2.py --limit 10 --output news.json
+      - name: Run
+        env:
+          MODE: ${{ github.event.inputs.mode || 'scrape' }}
+        run: |
+          if [ "$MODE" = "check" ]; then
+            python india_news_scraper.py --check
+          else
+            python india_news_scraper.py --limit 3
+          fi
 
       - name: Commit results
         run: |
           git config user.name "news-bot"
           git config user.email "news-bot@users.noreply.github.com"
-          git add news.json
-          git diff --staged --quiet || git commit -m "Update news $(date -u +'%Y-%m-%d %H:%M')"
+          git add -f news.json site_report.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "Update $(date -u +'%Y-%m-%d %H:%M')"
           git push
