@@ -72,7 +72,7 @@
     "name": "Zee News (Hindi)",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 25,
+    "items_found": 26,
     "notes": []
   },
   {
@@ -128,7 +128,7 @@
     "name": "Aaj Tak",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 51,
+    "items_found": 46,
     "notes": []
   },
   {
@@ -144,7 +144,7 @@
     "name": "Dainik Bhaskar",
     "status": "ok",
     "via": "feed/fast",
-    "items_found": 57,
+    "items_found": 58,
     "notes": []
   },
   {
@@ -176,7 +176,7 @@
     "name": "News24",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 14,
+    "items_found": 13,
     "notes": []
   },
   {
@@ -192,7 +192,7 @@
     "name": "Malayala Manorama",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 24,
+    "items_found": 25,
     "notes": []
   },
   {
@@ -224,7 +224,7 @@
     "name": "Lokmat",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 7,
+    "items_found": 9,
     "notes": []
   },
   {
@@ -298,7 +298,7 @@
     "name": "10TV",
     "status": "ok",
     "via": "feed/fast",
-    "items_found": 16,
+    "items_found": 17,
     "notes": []
   },
   {
@@ -486,7 +486,7 @@
     "name": "Times Now Navbharat",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 27,
+    "items_found": 29,
     "notes": []
   },
   {
@@ -518,7 +518,7 @@
     "name": "Bharat Express",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 9,
+    "items_found": 11,
     "notes": []
   },
   {
@@ -534,7 +534,7 @@
     "name": "News9",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 13,
+    "items_found": 14,
     "notes": []
   },
   {
@@ -558,7 +558,7 @@
     "name": "Moneycontrol",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 26,
+    "items_found": 27,
     "notes": []
   },
   {
@@ -582,7 +582,7 @@
     "name": "Prajavani",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 9,
+    "items_found": 10,
     "notes": []
   },
   {
@@ -598,7 +598,7 @@
     "name": "Thanthi TV",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 4,
+    "items_found": 6,
     "notes": []
   },
   {
@@ -630,7 +630,7 @@
     "name": "Reporter TV",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 26,
+    "items_found": 29,
     "notes": []
   },
   {
@@ -720,7 +720,7 @@
     "name": "Scroll.in",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 7,
+    "items_found": 9,
     "notes": []
   },
   {
@@ -744,7 +744,7 @@
     "name": "India TV Hindi",
     "status": "ok",
     "via": "feed/fast",
-    "items_found": 59,
+    "items_found": 56,
     "notes": []
   },
   {
@@ -768,7 +768,7 @@
     "name": "Live Hindustan",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 39,
+    "items_found": 38,
     "notes": [
       "feed blocked (HTTP 503): https://www.livehindustan.com/rss/national/rssfeed.xml"
     ]
@@ -778,9 +778,9 @@
     "name": "Patrika",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 15,
+    "items_found": 18,
     "notes": [
-      "feed blocked (HTTP Timeout): https://api.patrika.com/rss/india-news"
+      "feed blocked (HTTP 522): https://api.patrika.com/rss/india-news"
     ]
   },
   {
@@ -829,7 +829,7 @@
     "name": "The Telegraph India",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 12,
+    "items_found": 17,
     "notes": []
   },
   {
@@ -845,7 +845,7 @@
     "name": "The Print",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 32,
+    "items_found": 37,
     "notes": [
       "general feed returned no entries (HTTP 200): https://theprint.in/feed/"
     ]
@@ -867,7 +867,7 @@
     "name": "The Quint",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 2,
+    "items_found": 1,
     "notes": []
   },
   {
@@ -875,7 +875,7 @@
     "name": "The Better India",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 27,
+    "items_found": 29,
     "notes": []
   },
   {
@@ -899,7 +899,7 @@
     "name": "Swarajya",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 11,
+    "items_found": 10,
     "notes": []
   },
   {
@@ -907,7 +907,7 @@
     "name": "Newslaundry",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 6,
+    "items_found": 5,
     "notes": []
   },
   {
@@ -934,7 +934,7 @@
     "name": "Free Press Journal",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 62,
+    "items_found": 71,
     "notes": []
   },
   {
@@ -990,26 +990,23 @@
     "name": "Outlook India",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 34,
+    "items_found": 33,
     "notes": []
   },
   {
     "key": "sikhsiyasat",
     "name": "Sikh Siyasat",
-    "status": "fail",
-    "via": null,
-    "items_found": 0,
-    "notes": [
-      "general feed blocked (HTTP 401 + stealth:stealth-error): https://www.sikhsiyasat.com/feed/",
-      "latest page blocked (HTTP 401 + stealth:stealth-error): https://www.sikhsiyasat.com/"
-    ]
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 2,
+    "notes": []
   },
   {
     "key": "asianage",
     "name": "The Asian Age",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 16,
+    "items_found": 15,
     "notes": []
   },
   {
@@ -1017,7 +1014,7 @@
     "name": "Deccan Chronicle",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 36,
+    "items_found": 48,
     "notes": []
   },
   {
@@ -1052,7 +1049,7 @@
     "name": "India News",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 18,
+    "items_found": 17,
     "notes": []
   },
   {
@@ -1088,7 +1085,7 @@
     "name": "WION",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 15,
+    "items_found": 16,
     "notes": []
   },
   {
@@ -1186,7 +1183,7 @@
     "name": "News18 Kannada",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 11,
+    "items_found": 12,
     "notes": []
   },
   {
@@ -1194,7 +1191,7 @@
     "name": "News18 Tamil Nadu",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 23,
+    "items_found": 21,
     "notes": []
   },
   {
@@ -1230,7 +1227,7 @@
     "name": "News Tamil 24x7",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 23,
+    "items_found": 21,
     "notes": []
   },
   {
@@ -1248,7 +1245,7 @@
     "name": "News18 Kerala",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 40,
+    "items_found": 39,
     "notes": []
   },
   {
@@ -1264,7 +1261,7 @@
     "name": "News18 Bangla",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 38,
+    "items_found": 31,
     "notes": []
   },
   {
@@ -1272,7 +1269,7 @@
     "name": "Kolkata TV",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 18,
+    "items_found": 17,
     "notes": []
   },
   {
@@ -1296,7 +1293,7 @@
     "name": "Zee 24 Taas",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 35,
+    "items_found": 39,
     "notes": []
   },
   {
@@ -1312,7 +1309,7 @@
     "name": "Zee 24 Kalak",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 18,
+    "items_found": 20,
     "notes": []
   },
   {
@@ -1320,7 +1317,7 @@
     "name": "News18 Gujarati",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 25,
+    "items_found": 26,
     "notes": []
   },
   {
@@ -1344,7 +1341,7 @@
     "name": "News18 Odia",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 14,
+    "items_found": 20,
     "notes": []
   },
   {
@@ -1362,7 +1359,7 @@
     "name": "News18 Punjab Haryana Himachal",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 28,
+    "items_found": 27,
     "notes": []
   },
   {
@@ -1476,7 +1473,7 @@
     "name": "IBC24",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 22,
+    "items_found": 24,
     "notes": []
   },
   {
@@ -1484,7 +1481,7 @@
     "name": "Bansal News",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 30,
+    "items_found": 33,
     "notes": []
   },
   {
