@@ -1,0 +1,36 @@
+name: scrape-news
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes (GitHub may delay runs a few minutes)
+  workflow_dispatch:          # lets you click "Run workflow" manually
+
+permissions:
+  contents: write             # needed to commit news.json back to the repo
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install curl_cffi feedparser trafilatura beautifulsoup4 lxml requests
+
+      - name: Check which sites are reachable from GitHub's IP
+        run: python check_access.py || true
+
+      - name: Run scraper
+        run: python news_scraper_v2.py --limit 10 --output news.json
+
+      - name: Commit results
+        run: |
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git add news.json
+          git diff --staged --quiet || git commit -m "Update news $(date -u +'%Y-%m-%d %H:%M')"
+          git push
