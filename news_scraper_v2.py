@@ -36,12 +36,14 @@ import trafilatura
 from bs4 import BeautifulSoup
 from curl_cffi import requests as cffi
 
+SCRAPLING_IMPORT_ERROR = None
 try:
     from scrapling.fetchers import StealthyFetcher
     HAVE_SCRAPLING = True
-except Exception:  # not installed or browsers missing
+except Exception as _e:  # not installed or browsers missing
     StealthyFetcher = None
     HAVE_SCRAPLING = False
+    SCRAPLING_IMPORT_ERROR = f"{type(_e).__name__}: {_e}"
 
 HEADERS = {"Accept-Language": "en-IN,en;q=0.9,hi;q=0.8", "Referer": "https://www.google.com/"}
 PROXY = os.environ.get("SCRAPER_PROXY")
@@ -155,22 +157,33 @@ def fast_get(url, use_proxy=False, timeout=25, raw=False):
         return type(e).__name__, None
 
 
+_STEALTH_ERROR_SHOWN = False
+
+
 def stealth_get(url, use_proxy=False):
     """Scrapling StealthyFetcher: real browser, solves Cloudflare challenges."""
+    global _STEALTH_ERROR_SHOWN
     if not HAVE_SCRAPLING:
         return "no-scrapling", None
-    kw = dict(headless=True, network_idle=True, solve_cloudflare=True)
-    if PROXY and use_proxy:
-        kw["proxy"] = PROXY
-    try:
-        page = StealthyFetcher.fetch(url, **kw)
-        body = getattr(page, "html_content", None)
-        if not body:
-            raw = getattr(page, "body", b"")
-            body = raw.decode("utf-8", "ignore") if isinstance(raw, bytes) else str(raw)
-        return page.status, body
-    except Exception as e:
-        return type(e).__name__, None
+    attempts = (dict(headless=True, network_idle=True, solve_cloudflare=True),
+                dict(headless=True, network_idle=False))
+    last_err = None
+    for kw in attempts:
+        if PROXY and use_proxy:
+            kw = dict(kw, proxy=PROXY)
+        try:
+            page = StealthyFetcher.fetch(url, **kw)
+            body = getattr(page, "html_content", None)
+            if not body:
+                raw = getattr(page, "body", b"")
+                body = raw.decode("utf-8", "ignore") if isinstance(raw, bytes) else str(raw)
+            return page.status, body
+        except Exception as e:
+            last_err = f"{type(e).__name__}: {str(e)[:300]}"
+    if not _STEALTH_ERROR_SHOWN:
+        _STEALTH_ERROR_SHOWN = True
+        print(f"  [stealth browser error] {last_err}")
+    return "stealth-error", None
 
 
 def fetch_page(url, site, stealth_ok=True, raw=False):
@@ -186,7 +199,7 @@ def fetch_page(url, site, stealth_ok=True, raw=False):
                 body2 = body2.encode("utf-8")
             return st2, body2, "stealth"
         if st2 != "no-scrapling":
-            st = st2
+            st = f"{st} + stealth:{st2}"
     return st, None, "blocked"
 
 
@@ -488,13 +501,28 @@ def main():
     ap.add_argument("--check", action="store_true", help="only test sites, don't fetch articles")
     ap.add_argument("--no-stealth", action="store_true")
     ap.add_argument("--proxy", default=None)
+    ap.add_argument("--test-stealth", default=None, metavar="URL",
+                    help="try the Scrapling stealth browser on one URL and print any error")
     args = ap.parse_args()
+
+    if args.test_stealth:
+        import traceback
+        print("Scrapling importable:", HAVE_SCRAPLING, SCRAPLING_IMPORT_ERROR or "")
+        if HAVE_SCRAPLING:
+            try:
+                page = StealthyFetcher.fetch(args.test_stealth, headless=True, network_idle=False)
+                print("stealth OK. status:", page.status,
+                      "| html chars:", len(getattr(page, "html_content", "") or ""))
+            except Exception:
+                traceback.print_exc()
+        return
 
     global PROXY
     if args.proxy:
         PROXY = args.proxy
     stealth_available = HAVE_SCRAPLING and not args.no_stealth
-    print(f"Scrapling stealth fallback: {'ON' if stealth_available else 'OFF'} | proxy: {'on' if PROXY else 'none'}")
+    print(f"Scrapling stealth fallback: {'ON' if stealth_available else 'OFF'} | proxy: {'on' if PROXY else 'none'}"
+          + (f" | import error: {SCRAPLING_IMPORT_ERROR}" if SCRAPLING_IMPORT_ERROR else ""))
 
     cfg = json.loads(Path(args.config).read_text(encoding="utf-8"))
     sites = cfg.get("sites", cfg)
