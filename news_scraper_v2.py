@@ -117,6 +117,7 @@ NON_NATIONAL = {
 NAV_PATH = re.compile(
     r"/(category|categories|tag|tags|topic|topics|author|authors|page|search|about|about-us|"
     r"contact|contact-us|privacy|privacy-policy|terms|live-tv|epaper|rss|feed|subscribe|"
+    r"articlelist|photogallery|videoshow|photo-gallery|"
     r"advertise|careers|sitemap|cookie)(/|$)")
 
 
@@ -171,6 +172,28 @@ def fast_get(url, use_proxy=False, timeout=25, raw=False, insecure=False):
 
 
 _STEALTH_ERROR_SHOWN = False
+_BROWSER_INSTALL_TRIED = False
+
+
+def ensure_browser():
+    """Install the Chromium that Scrapling's stealth browser needs (once per run)."""
+    global _BROWSER_INSTALL_TRIED
+    if _BROWSER_INSTALL_TRIED:
+        return False
+    _BROWSER_INSTALL_TRIED = True
+    import subprocess, sys
+    print("  [stealth] Chromium missing -> installing it now (one time, can take a minute)...")
+    for cmd in ([sys.executable, "-m", "patchright", "install", "chromium"],
+                [sys.executable, "-m", "playwright", "install", "chromium"]):
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+            tail = (r.stdout + r.stderr)[-250:].replace("\n", " ")
+            print(f"  [stealth] {' '.join(cmd[2:])} -> exit {r.returncode}: {tail}")
+            if r.returncode == 0:
+                return True
+        except Exception as e:
+            print(f"  [stealth] install error: {type(e).__name__}: {e}")
+    return False
 
 
 def stealth_get(url, use_proxy=False):
@@ -181,18 +204,24 @@ def stealth_get(url, use_proxy=False):
     attempts = (dict(headless=True, network_idle=True, solve_cloudflare=True),
                 dict(headless=True, network_idle=False))
     last_err = None
-    for kw in attempts:
-        if PROXY and use_proxy:
-            kw = dict(kw, proxy=PROXY)
-        try:
-            page = StealthyFetcher.fetch(url, **kw)
-            body = getattr(page, "html_content", None)
-            if not body:
-                raw = getattr(page, "body", b"")
-                body = raw.decode("utf-8", "ignore") if isinstance(raw, bytes) else str(raw)
-            return page.status, body
-        except Exception as e:
-            last_err = f"{type(e).__name__}: {str(e)[:300]}"
+    for round_no in range(2):
+        for kw in attempts:
+            if PROXY and use_proxy:
+                kw = dict(kw, proxy=PROXY)
+            try:
+                page = StealthyFetcher.fetch(url, **kw)
+                body = getattr(page, "html_content", None)
+                if not body:
+                    raw = getattr(page, "body", b"")
+                    body = raw.decode("utf-8", "ignore") if isinstance(raw, bytes) else str(raw)
+                return page.status, body
+            except Exception as e:
+                last_err = f"{type(e).__name__}: {str(e)[:300]}"
+                if "Executable doesn't exist" in str(e):
+                    break  # no point trying the lighter setup; install the browser first
+        if round_no == 0 and "Executable doesn't exist" in (last_err or "") and ensure_browser():
+            continue
+        break
     if not _STEALTH_ERROR_SHOWN:
         _STEALTH_ERROR_SHOWN = True
         print(f"  [stealth browser error] {last_err}")
@@ -291,7 +320,8 @@ def extract_links(base, body, pattern, limit=60, auto=False):
         p = urlparse(href)
         if p.scheme not in ("http", "https") or root_domain(p.netloc) != base_root:
             continue
-        if rx and not rx.search(p.path):
+        target = p.path + (("?" + p.query) if p.query else "")
+        if rx and not (rx.search(p.path) or rx.search(target)):
             continue
         if not rx and auto and not looks_like_article(p.path):
             continue
@@ -299,7 +329,7 @@ def extract_links(base, body, pattern, limit=60, auto=False):
             continue
         seen.add(href)
         out.append({"url": href, "title": a.get_text(" ", strip=True) or None,
-                    "auto": bool(auto and not rx)})
+                    "auto": True})  # came from a listing page, so it must prove it is an article
         if len(out) >= limit:
             break
     return out
@@ -478,9 +508,10 @@ def build_article(item, site, budget):
     published = ld.get("datePublished") or (meta(soup, "article:published_time") if soup else None) or item.get("published")
     updated = ld.get("dateModified") or (meta(soup, "article:modified_time") if soup else None) or item.get("updated") or published
 
-    if item.get("auto"):  # guessed link: make sure it really is an article, not a menu/section/quote page
+    if item.get("auto") and not site.get("allow_undated"):
+        # link came from a listing page: make sure it is really an article, not a menu/section/quote page
         if html:
-            if not published and len(content or "") < 400:
+            if not published and not (soup and meta(soup, "og:type") == "article"):
                 return None
         elif len(item.get("title") or "") < 25:
             return None
@@ -523,20 +554,38 @@ def main():
     ap.add_argument("--check", action="store_true", help="only test sites, don't fetch articles")
     ap.add_argument("--no-stealth", action="store_true")
     ap.add_argument("--proxy", default=None)
+    ap.add_argument("--clean", action="store_true", help="remove junk entries from news.json and exit")
     ap.add_argument("--test-stealth", default=None, metavar="URL",
                     help="try the Scrapling stealth browser on one URL and print any error")
     args = ap.parse_args()
 
+    if args.clean:
+        out = Path(args.output)
+        arts = json.loads(out.read_text(encoding="utf-8")) if out.exists() else []
+        junk_title = re.compile(r"(Latest News, Overview|Share Price|Stock Price|Live .*Price|\bNAV\b.*Returns)", re.I)
+        keep, bad = [], []
+        for a in arts:
+            t = a.get("title") or ""
+            undated = not a.get("published_date")
+            if (undated and len(t) < 20) or junk_title.search(t) or (undated and a.get("full_text_fetched") and len(a.get("content") or "") < 400):
+                bad.append(a)
+            else:
+                keep.append(a)
+        rej_path = Path("rejected_urls.json")
+        rej = set(json.loads(rej_path.read_text(encoding="utf-8"))) if rej_path.exists() else set()
+        rej |= {a["article_id"] for a in bad}
+        out.write_text(json.dumps(keep, ensure_ascii=False, indent=2), encoding="utf-8")
+        rej_path.write_text(json.dumps(sorted(rej)), encoding="utf-8")
+        print(f"Cleaned {out}: kept {len(keep)}, removed {len(bad)} junk entries")
+        for src, n in Counter(a["source"] for a in bad).most_common(12):
+            print(f"  removed {n:4d} from {src}")
+        return
+
     if args.test_stealth:
-        import traceback
         print("Scrapling importable:", HAVE_SCRAPLING, SCRAPLING_IMPORT_ERROR or "")
         if HAVE_SCRAPLING:
-            try:
-                page = StealthyFetcher.fetch(args.test_stealth, headless=True, network_idle=False)
-                print("stealth OK. status:", page.status,
-                      "| html chars:", len(getattr(page, "html_content", "") or ""))
-            except Exception:
-                traceback.print_exc()
+            st, body = stealth_get(args.test_stealth)
+            print("stealth result -> status:", st, "| html chars:", len(body or ""))
         return
 
     global PROXY
@@ -599,7 +648,7 @@ def main():
     seen |= rejected
     new_count = 0
     for k in ok:
-        site, budget, taken = sites[k], {"left": args.stealth_limit if stealth_available else 0}, 0
+        site, budget, taken, skipped = sites[k], {"left": args.stealth_limit if stealth_available else 0}, 0, 0
         print(f"\n[{site['name']}] via {results[k]['via']}")
         for item in results[k]["items"]:
             if taken >= args.limit:
@@ -610,12 +659,15 @@ def main():
             time.sleep(args.delay)
             if art is None:  # not a real article (section/menu/quote page)
                 rejected.add(make_id(item["url"]))
+                skipped += 1
                 continue
             articles.append(art)
             seen.add(art["article_id"])
             taken += 1
             new_count += 1
             print(f"  + {art['title']}{'' if art['full_text_fetched'] else ' (metadata only)'}")
+        if skipped:
+            print(f"  (skipped {skipped} non-article pages)")
         out.write_text(json.dumps(articles, ensure_ascii=False, indent=2), encoding="utf-8")
         rej_path.write_text(json.dumps(sorted(rejected)), encoding="utf-8")
 
