@@ -165,7 +165,7 @@
 "kalinga_tv": {"name": "Kalinga TV", "latest_page": "https://kalingatv.com/", "proxy": true},
 "news18_punjab_haryana_himachal": {"name": "News18 Punjab Haryana Himachal", "latest_page": "https://punjab.news18.com/", "proxy": true},
 "chardikla_time_tv": {"name": "Chardikla Time TV", "latest_page": "https://chardiklatimetv.com/", "proxy": true},
-"assam_talks": {"name": "Assam Talks", "latest_page": "https://assamtalks.com/", "proxy": true},
+"assam_talks": {"name": "Assam Talks", "proxy": true, "feed": "https://assamtalks.com/feed/", "page": "https://assamtalks.com/?cat=28", "pattern": "^/\\?p=\\d+$", "language": "as"},
 "news18_rajasthan": {"name": "News18 Rajasthan", "latest_page": ["https://hindi.news18.com/news/rajasthan/", "https://hindi.news18.com/rajasthan/"], "proxy": true},
 "news18_uttar_pradesh_uttarakhand": {"name": "News18 Uttar Pradesh Uttarakhand", "latest_page": ["https://hindi.news18.com/news/uttar-pradesh/", "https://hindi.news18.com/uttar-pradesh/"], "proxy": true},
 "news18_bihar_jharkhand": {"name": "News18 Bihar Jharkhand", "latest_page": ["https://hindi.news18.com/news/bihar/", "https://hindi.news18.com/bihar/"], "proxy": true},
@@ -180,7 +180,7 @@
 "jk_media": {"name": "JK Media", "latest_page": "https://jkmedia.in/", "proxy": true},
 "vijay_karnataka": {"name": "Vijay Karnataka", "latest_page": "https://vijaykarnataka.com/", "proxy": true},
 "udayavani": {"name": "Udayavani", "latest_page": "https://www.udayavani.com/", "proxy": true},
-"press_trust_of_india": {"name": "Press Trust of India", "latest_page": "https://www.ptinews.com/", "proxy": true},
+"press_trust_of_india": {"name": "Press Trust of India", "proxy": true, "page": ["https://www.ptinews.com/national", "https://www.ptinews.com/"], "pattern": "^/story/national/[^/]+/\\d+$"},
 "united_news_of_india": {"name": "United News of India", "latest_page": "https://www.uniindia.com/", "proxy": true},
 "prasar_bharati": {"name": "Prasar Bharati", "latest_page": "https://prasarbharati.gov.in/", "proxy": true}
 }}
