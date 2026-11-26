@@ -28,16 +28,20 @@
     "name": "India Today",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 6,
+    "items_found": 7,
     "notes": []
   },
   {
     "key": "indianexpress",
     "name": "The Indian Express",
-    "status": "ok",
-    "via": "feed/fast",
-    "items_found": 200,
-    "notes": []
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:stealth-error): https://indianexpress.com/section/india/feed/",
+      "feed blocked (HTTP 403 + stealth:stealth-error): https://indianexpress.com/section/india/politics/feed/",
+      "page blocked (HTTP 403 + stealth:stealth-error): https://indianexpress.com/section/india/"
+    ]
   },
   {
     "key": "ht",
@@ -68,7 +72,7 @@
     "name": "Zee News (Hindi)",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 27,
+    "items_found": 24,
     "notes": []
   },
   {
@@ -116,7 +120,7 @@
     "name": "Deccan Herald",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 1,
+    "items_found": 3,
     "notes": []
   },
   {
@@ -140,7 +144,7 @@
     "name": "Dainik Bhaskar",
     "status": "ok",
     "via": "feed/fast",
-    "items_found": 60,
+    "items_found": 48,
     "notes": []
   },
   {
@@ -180,7 +184,7 @@
     "name": "Eenadu",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 29,
+    "items_found": 42,
     "notes": []
   },
   {
@@ -220,7 +224,7 @@
     "name": "Lokmat",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 10,
+    "items_found": 9,
     "notes": []
   },
   {
@@ -234,10 +238,12 @@
   {
     "key": "ptcnews",
     "name": "PTC News",
-    "status": "ok",
-    "via": "page/fast",
-    "items_found": 5,
-    "notes": []
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "page blocked (HTTP 403 + stealth:stealth-error): https://www.ptcnews.tv/nation"
+    ]
   },
   {
     "key": "zeenews_en",
@@ -314,18 +320,22 @@
   {
     "key": "24_news",
     "name": "24 News",
-    "status": "ok",
-    "via": "feed/fast",
-    "items_found": 10,
-    "notes": []
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:stealth-error): https://www.twentyfournews.com/news/national/feed/"
+    ]
   },
   {
     "key": "kairali_news",
     "name": "Kairali News",
-    "status": "ok",
-    "via": "feed/fast",
-    "items_found": 10,
-    "notes": []
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:stealth-error): https://www.kairalinewsonline.com/ml/news/national/feed/"
+    ]
   },
   {
     "key": "janam_tv",
@@ -516,7 +526,7 @@
     "name": "Times Now",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 26,
+    "items_found": 27,
     "notes": []
   },
   {
@@ -540,7 +550,7 @@
     "name": "Business Today",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 18,
+    "items_found": 19,
     "notes": []
   },
   {
@@ -620,7 +630,7 @@
     "name": "Reporter TV",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 26,
+    "items_found": 25,
     "notes": []
   },
   {
@@ -710,7 +720,7 @@
     "name": "Scroll.in",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 9,
+    "items_found": 7,
     "notes": []
   },
   {
@@ -768,7 +778,7 @@
     "name": "Patrika",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 18,
+    "items_found": 19,
     "notes": [
       "feed blocked (HTTP 522): https://api.patrika.com/rss/india-news"
     ]
@@ -776,11 +786,12 @@
   {
     "key": "loksatta",
     "name": "Loksatta",
-    "status": "ok",
-    "via": "latest-page/fast",
-    "items_found": 30,
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
     "notes": [
-      "feed returned no entries (HTTP 200): https://www.loksatta.com/desh-videsh/feed/"
+      "feed blocked (HTTP 403 + stealth:stealth-error): https://www.loksatta.com/desh-videsh/feed/",
+      "latest page blocked (HTTP 403 + stealth:stealth-error): https://www.loksatta.com/desh-videsh/"
     ]
   },
   {
@@ -818,7 +829,7 @@
     "name": "The Telegraph India",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 17,
+    "items_found": 9,
     "notes": []
   },
   {
@@ -832,12 +843,11 @@
   {
     "key": "theprint",
     "name": "The Print",
-    "status": "fail",
-    "via": null,
-    "items_found": 0,
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 37,
     "notes": [
-      "general feed blocked (HTTP 200 + stealth:stealth-error): https://theprint.in/feed/",
-      "latest page blocked (HTTP 200 + stealth:stealth-error): https://theprint.in/"
+      "general feed returned no entries (HTTP 200): https://theprint.in/feed/"
     ]
   },
   {
@@ -867,7 +877,7 @@
     "name": "The Better India",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 28,
+    "items_found": 27,
     "notes": []
   },
   {
@@ -905,11 +915,12 @@
   {
     "key": "jansatta",
     "name": "Jansatta",
-    "status": "ok",
-    "via": "latest-page/fast",
-    "items_found": 39,
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
     "notes": [
-      "general feed returned no entries (HTTP 200): https://www.jansatta.com/feed/"
+      "general feed blocked (HTTP 403 + stealth:stealth-error): https://www.jansatta.com/feed/",
+      "latest page blocked (HTTP 403 + stealth:stealth-error): https://www.jansatta.com/"
     ]
   },
   {
@@ -925,7 +936,7 @@
     "name": "Free Press Journal",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 28,
+    "items_found": 11,
     "notes": []
   },
   {
@@ -981,7 +992,7 @@
     "name": "Outlook India",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 30,
+    "items_found": 28,
     "notes": []
   },
   {
@@ -1005,17 +1016,18 @@
     "name": "Deccan Chronicle",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 49,
+    "items_found": 47,
     "notes": []
   },
   {
     "key": "financialexpress",
     "name": "Financial Express",
-    "status": "ok",
-    "via": "latest-page/fast",
-    "items_found": 10,
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
     "notes": [
-      "general feed blocked (HTTP 503): https://syndication.financialexpress.com/rss/latest-news.xml"
+      "general feed blocked (HTTP 503 + stealth:stealth-error): https://syndication.financialexpress.com/rss/latest-news.xml",
+      "latest page blocked (HTTP 403 + stealth:stealth-error): https://www.financialexpress.com/"
     ]
   },
   {
@@ -1123,10 +1135,12 @@
   {
     "key": "sakshi_tv",
     "name": "Sakshi TV",
-    "status": "ok",
-    "via": "latest-page/fast",
-    "items_found": 40,
-    "notes": []
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 403 + stealth:stealth-error): https://www.sakshi.com/"
+    ]
   },
   {
     "key": "t_news",
@@ -1171,7 +1185,7 @@
     "name": "News18 Kannada",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 12,
+    "items_found": 11,
     "notes": []
   },
   {
@@ -1179,7 +1193,7 @@
     "name": "News18 Tamil Nadu",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 20,
+    "items_found": 19,
     "notes": []
   },
   {
@@ -1233,7 +1247,7 @@
     "name": "News18 Kerala",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 38,
+    "items_found": 39,
     "notes": []
   },
   {
@@ -1305,7 +1319,7 @@
     "name": "News18 Gujarati",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 27,
+    "items_found": 28,
     "notes": []
   },
   {
@@ -1375,7 +1389,7 @@
     "name": "News18 Rajasthan",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 55,
+    "items_found": 53,
     "notes": []
   },
   {
@@ -1461,7 +1475,7 @@
     "name": "IBC24",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 29,
+    "items_found": 26,
     "notes": []
   },
   {
@@ -1469,7 +1483,7 @@
     "name": "Bansal News",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 38,
+    "items_found": 39,
     "notes": []
   },
   {
