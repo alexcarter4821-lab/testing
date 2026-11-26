@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "check = only test all sites and write site_report.json; scrape = fetch articles and write news.json"
+        description: "scrape = fetch articles; check = only test sites; clean = remove junk entries already in news.json"
         type: choice
-        options: [scrape, check]
+        options: [scrape, check, clean]
         default: scrape
 
 permissions:
@@ -35,20 +35,24 @@ jobs:
       - name: Install Scrapling stealth browser
         run: |
           scrapling install || echo "scrapling install failed"
+          python -m patchright install chromium || echo "patchright install failed"
+          python -m playwright install chromium || echo "playwright install failed"
           python -m playwright install-deps chromium || echo "install-deps failed"
 
       - name: Test stealth browser (shows the real error if it is broken)
         continue-on-error: true
-        run: python news_scraper_v2.py --test-stealth https://www.indiatvnews.com/
+        run: python india_news_scraper.py --test-stealth https://www.indiatvnews.com/
 
       - name: Run
         env:
           MODE: ${{ github.event.inputs.mode || 'scrape' }}
         run: |
           if [ "$MODE" = "check" ]; then
-            python news_scraper_v2.py --check
+            python india_news_scraper.py --check
+          elif [ "$MODE" = "clean" ]; then
+            python india_news_scraper.py --clean
           else
-            python news_scraper_v2.py --limit 3
+            python india_news_scraper.py --limit 3
           fi
 
       - name: Save results as a downloadable artifact
@@ -59,6 +63,7 @@ jobs:
           path: |
             news.json
             site_report.json
+            rejected_urls.json
           if-no-files-found: ignore
 
       - name: Commit results
@@ -67,5 +72,6 @@ jobs:
           git config user.email "news-bot@users.noreply.github.com"
           if [ -f news.json ]; then git add -f news.json; fi
           if [ -f site_report.json ]; then git add -f site_report.json; fi
+          if [ -f rejected_urls.json ]; then git add -f rejected_urls.json; fi
           git diff --staged --quiet || git commit -m "Update $(date -u +'%Y-%m-%d %H:%M')"
           git push
