@@ -1,0 +1,1537 @@
+[
+  {
+    "key": "ndtv",
+    "name": "NDTV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "toi",
+    "name": "Times of India",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "thehindu",
+    "name": "The Hindu",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "indiatoday",
+    "name": "India Today",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 4,
+    "notes": []
+  },
+  {
+    "key": "indianexpress",
+    "name": "The Indian Express",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:403): https://indianexpress.com/section/india/feed/",
+      "feed blocked (HTTP 403 + stealth:403): https://indianexpress.com/section/india/politics/feed/",
+      "page blocked (HTTP 403 + stealth:403): https://indianexpress.com/section/india/"
+    ]
+  },
+  {
+    "key": "ht",
+    "name": "Hindustan Times",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 100,
+    "notes": []
+  },
+  {
+    "key": "news18",
+    "name": "News18",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 200,
+    "notes": []
+  },
+  {
+    "key": "cnbctv18",
+    "name": "CNBC-TV18",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 200,
+    "notes": []
+  },
+  {
+    "key": "zeenews",
+    "name": "Zee News (Hindi)",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 21,
+    "notes": []
+  },
+  {
+    "key": "republic",
+    "name": "Republic World",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 33,
+    "notes": []
+  },
+  {
+    "key": "firstpost",
+    "name": "Firstpost",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 200,
+    "notes": []
+  },
+  {
+    "key": "bs",
+    "name": "Business Standard",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 35,
+    "notes": []
+  },
+  {
+    "key": "mint",
+    "name": "Mint",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 19,
+    "notes": []
+  },
+  {
+    "key": "et",
+    "name": "Economic Times",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 50,
+    "notes": []
+  },
+  {
+    "key": "deccanherald",
+    "name": "Deccan Herald",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 3,
+    "notes": []
+  },
+  {
+    "key": "aajtak",
+    "name": "Aaj Tak",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 48,
+    "notes": []
+  },
+  {
+    "key": "abp",
+    "name": "ABP News",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "bhaskar",
+    "name": "Dainik Bhaskar",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 48,
+    "notes": []
+  },
+  {
+    "key": "amarujala",
+    "name": "Amar Ujala",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 40,
+    "notes": []
+  },
+  {
+    "key": "nbt",
+    "name": "Navbharat Times",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 11,
+    "notes": []
+  },
+  {
+    "key": "tv9",
+    "name": "TV9 Bharatvarsh",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 30,
+    "notes": []
+  },
+  {
+    "key": "news24",
+    "name": "News24",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 12,
+    "notes": []
+  },
+  {
+    "key": "eenadu",
+    "name": "Eenadu",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 42,
+    "notes": []
+  },
+  {
+    "key": "manorama",
+    "name": "Malayala Manorama",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 25,
+    "notes": []
+  },
+  {
+    "key": "mathrubhumi",
+    "name": "Mathrubhumi",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 25,
+    "notes": []
+  },
+  {
+    "key": "dinamalar",
+    "name": "Dinamalar",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 15,
+    "notes": []
+  },
+  {
+    "key": "anandabazar",
+    "name": "Anandabazar Patrika",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 22,
+    "notes": []
+  },
+  {
+    "key": "lokmat",
+    "name": "Lokmat",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 9,
+    "notes": []
+  },
+  {
+    "key": "gujaratsamachar",
+    "name": "Gujarat Samachar",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 8,
+    "notes": []
+  },
+  {
+    "key": "ptcnews",
+    "name": "PTC News",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "page blocked (HTTP 403 + stealth:403): https://www.ptcnews.tv/nation"
+    ]
+  },
+  {
+    "key": "zeenews_en",
+    "name": "Zee News (English)",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "sadhna_news",
+    "name": "Sadhna News",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "newsx",
+    "name": "NewsX",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "dd_india",
+    "name": "DD India",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "tv9_telugu",
+    "name": "TV9 Telugu",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "ntv_telugu",
+    "name": "NTV Telugu",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "10tv",
+    "name": "10TV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 17,
+    "notes": []
+  },
+  {
+    "key": "hmtv",
+    "name": "HMTV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "tv9_kannada",
+    "name": "TV9 Kannada",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "24_news",
+    "name": "24 News",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:403): https://www.twentyfournews.com/news/national/feed/"
+    ]
+  },
+  {
+    "key": "kairali_news",
+    "name": "Kairali News",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:403): https://www.kairalinewsonline.com/ml/news/national/feed/"
+    ]
+  },
+  {
+    "key": "janam_tv",
+    "name": "Janam TV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "tv9_bangla",
+    "name": "TV9 Bangla",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "abp_ananda",
+    "name": "ABP Ananda",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "r_plus_news",
+    "name": "R Plus News",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "tv9_marathi",
+    "name": "TV9 Marathi",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "abp_majha",
+    "name": "ABP Majha",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "tv9_gujarati",
+    "name": "TV9 Gujarati",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 50,
+    "notes": []
+  },
+  {
+    "key": "abp_asmita",
+    "name": "ABP Asmita",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "otv",
+    "name": "OTV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "nandighosha_tv",
+    "name": "Nandighosha TV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "abp_sanjha",
+    "name": "ABP Sanjha",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "living_india_news",
+    "name": "Living India News",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "north_east_live",
+    "name": "North East Live",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "greater_kashmir",
+    "name": "Greater Kashmir",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "kashmir_life",
+    "name": "Kashmir Life",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "the_shillong_times",
+    "name": "The Shillong Times",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "nagaland_post",
+    "name": "Nagaland Post",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 500,
+    "notes": []
+  },
+  {
+    "key": "republic_bharat",
+    "name": "Republic Bharat",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 28,
+    "notes": []
+  },
+  {
+    "key": "times_now_navbharat",
+    "name": "Times Now Navbharat",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 29,
+    "notes": []
+  },
+  {
+    "key": "news_nation",
+    "name": "News Nation",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "good_news_today",
+    "name": "Good News Today",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "bharat24",
+    "name": "Bharat24",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 30,
+    "notes": []
+  },
+  {
+    "key": "bharat_express",
+    "name": "Bharat Express",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "times_now",
+    "name": "Times Now",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 27,
+    "notes": []
+  },
+  {
+    "key": "news9",
+    "name": "News9",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 15,
+    "notes": []
+  },
+  {
+    "key": "cnbc_awaaz",
+    "name": "CNBC Awaaz",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 28,
+    "notes": []
+  },
+  {
+    "key": "business_today",
+    "name": "Business Today",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 19,
+    "notes": []
+  },
+  {
+    "key": "moneycontrol",
+    "name": "Moneycontrol",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 28,
+    "notes": []
+  },
+  {
+    "key": "abn_andhra_jyothy",
+    "name": "ABN Andhra Jyothy",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "v6_news",
+    "name": "V6 News",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 27,
+    "notes": []
+  },
+  {
+    "key": "prajavani",
+    "name": "Prajavani",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "puthiya_thalaimurai",
+    "name": "Puthiya Thalaimurai",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 21,
+    "notes": []
+  },
+  {
+    "key": "thanthi_tv",
+    "name": "Thanthi TV",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 6,
+    "notes": []
+  },
+  {
+    "key": "asianet_news",
+    "name": "Asianet News",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 19,
+    "notes": []
+  },
+  {
+    "key": "manorama_news",
+    "name": "Manorama News",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 40,
+    "notes": []
+  },
+  {
+    "key": "mediaone_tv",
+    "name": "MediaOne TV",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 17,
+    "notes": []
+  },
+  {
+    "key": "reporter_tv",
+    "name": "Reporter TV",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 26,
+    "notes": []
+  },
+  {
+    "key": "jai_maharashtra",
+    "name": "Jai Maharashtra",
+    "status": "ok",
+    "via": "page/stealth",
+    "items_found": 2,
+    "notes": []
+  },
+  {
+    "key": "lokshahi_marathi",
+    "name": "Lokshahi Marathi",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "gstv",
+    "name": "GSTV",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 24,
+    "notes": []
+  },
+  {
+    "key": "prameya_news7",
+    "name": "Prameya News7",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 17,
+    "notes": []
+  },
+  {
+    "key": "news_live_assam",
+    "name": "News Live Assam",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "pratidin_time",
+    "name": "Pratidin Time",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "dy365",
+    "name": "DY365",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "the_sentinel",
+    "name": "The Sentinel",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 27,
+    "notes": []
+  },
+  {
+    "key": "the_arunachal_times",
+    "name": "The Arunachal Times",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 7,
+    "notes": []
+  },
+  {
+    "key": "ani",
+    "name": "ANI",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 21,
+    "notes": []
+  },
+  {
+    "key": "scroll_in",
+    "name": "Scroll.in",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 8,
+    "notes": []
+  },
+  {
+    "key": "the_mooknayak",
+    "name": "The Mooknayak",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 7,
+    "notes": []
+  },
+  {
+    "key": "indiatv",
+    "name": "India TV",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "indiatv_hindi",
+    "name": "India TV Hindi",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 59,
+    "notes": []
+  },
+  {
+    "key": "onmanorama",
+    "name": "Onmanorama",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "dnaindia",
+    "name": "DNA India",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "livehindustan",
+    "name": "Live Hindustan",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 37,
+    "notes": [
+      "feed blocked (HTTP 503): https://www.livehindustan.com/rss/national/rssfeed.xml"
+    ]
+  },
+  {
+    "key": "patrika",
+    "name": "Patrika",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 14,
+    "notes": [
+      "feed blocked (HTTP 522): https://api.patrika.com/rss/india-news"
+    ]
+  },
+  {
+    "key": "loksatta",
+    "name": "Loksatta",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:403): https://www.loksatta.com/desh-videsh/feed/",
+      "latest page blocked (HTTP 403 + stealth:403): https://www.loksatta.com/desh-videsh/"
+    ]
+  },
+  {
+    "key": "oneindia",
+    "name": "Oneindia",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 30,
+    "notes": []
+  },
+  {
+    "key": "midday",
+    "name": "Mid-Day",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 5,
+    "notes": [
+      "latest page loaded but 0 article links found: https://www.mid-day.com/news/india-news"
+    ]
+  },
+  {
+    "key": "sify",
+    "name": "Sify",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "feed blocked (HTTP 403 + stealth:403): https://www.sify.com/rss2/news/article/category/national",
+      "feed blocked (HTTP 403 + stealth:403): https://www.sify.com/rss2/news/article/category/politics",
+      "latest page blocked (HTTP 403 + stealth:403): https://www.sify.com/news/"
+    ]
+  },
+  {
+    "key": "telegraph",
+    "name": "The Telegraph India",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 13,
+    "notes": []
+  },
+  {
+    "key": "bbc_india",
+    "name": "BBC News India",
+    "status": "ok",
+    "via": "feed/fast",
+    "items_found": 26,
+    "notes": []
+  },
+  {
+    "key": "theprint",
+    "name": "The Print",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 37,
+    "notes": [
+      "general feed returned no entries (HTTP 200): https://theprint.in/feed/"
+    ]
+  },
+  {
+    "key": "thewire",
+    "name": "The Wire",
+    "status": "ok",
+    "via": "latest-page/stealth",
+    "items_found": 42,
+    "notes": [
+      "general feed returned no entries (HTTP 200): https://thewire.in/feed",
+      "general feed returned no entries (HTTP 200): https://thewire.in/feed/"
+    ]
+  },
+  {
+    "key": "thequint",
+    "name": "The Quint",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 10,
+    "notes": [
+      "general feed returned no entries (HTTP 200): https://www.thequint.com/feed"
+    ]
+  },
+  {
+    "key": "thebetterindia",
+    "name": "The Better India",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 27,
+    "notes": []
+  },
+  {
+    "key": "frontline",
+    "name": "Frontline",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 47,
+    "notes": []
+  },
+  {
+    "key": "opindia",
+    "name": "OpIndia",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 7,
+    "notes": []
+  },
+  {
+    "key": "swarajya",
+    "name": "Swarajya",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 10,
+    "notes": []
+  },
+  {
+    "key": "newslaundry",
+    "name": "Newslaundry",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 5,
+    "notes": []
+  },
+  {
+    "key": "jansatta",
+    "name": "Jansatta",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "general feed blocked (HTTP 403 + stealth:403): https://www.jansatta.com/feed/",
+      "latest page blocked (HTTP 403 + stealth:403): https://www.jansatta.com/"
+    ]
+  },
+  {
+    "key": "rediff",
+    "name": "Rediff News",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 51,
+    "notes": []
+  },
+  {
+    "key": "fpj",
+    "name": "Free Press Journal",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 13,
+    "notes": []
+  },
+  {
+    "key": "maharashtratimes",
+    "name": "Maharashtra Times",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 25,
+    "notes": []
+  },
+  {
+    "key": "bbc_hindi",
+    "name": "BBC Hindi",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 37,
+    "notes": []
+  },
+  {
+    "key": "bbc_tamil",
+    "name": "BBC Tamil",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 24,
+    "notes": []
+  },
+  {
+    "key": "bbc_bangla",
+    "name": "BBC Bangla",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 13,
+    "notes": []
+  },
+  {
+    "key": "bbc_marathi",
+    "name": "BBC Marathi",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 29,
+    "notes": []
+  },
+  {
+    "key": "caravan",
+    "name": "The Caravan",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 27,
+    "notes": []
+  },
+  {
+    "key": "outlook",
+    "name": "Outlook India",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 26,
+    "notes": []
+  },
+  {
+    "key": "sikhsiyasat",
+    "name": "Sikh Siyasat",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 2,
+    "notes": []
+  },
+  {
+    "key": "asianage",
+    "name": "The Asian Age",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 15,
+    "notes": []
+  },
+  {
+    "key": "deccanchronicle",
+    "name": "Deccan Chronicle",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 44,
+    "notes": []
+  },
+  {
+    "key": "financialexpress",
+    "name": "Financial Express",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "general feed blocked (HTTP 503 + stealth:503): https://syndication.financialexpress.com/rss/latest-news.xml",
+      "latest page blocked (HTTP 403 + stealth:403): https://www.financialexpress.com/"
+    ]
+  },
+  {
+    "key": "news18_hindi",
+    "name": "News18 Hindi (Nation)",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 38,
+    "notes": []
+  },
+  {
+    "key": "ddnews",
+    "name": "DD News",
+    "status": "ok",
+    "via": "page/stealth",
+    "items_found": 15,
+    "notes": []
+  },
+  {
+    "key": "india_news",
+    "name": "India News",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 19,
+    "notes": []
+  },
+  {
+    "key": "sansad_tv",
+    "name": "Sansad TV",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP Timeout + stealth:stealth-error): https://sansadtv.nic.in/"
+    ]
+  },
+  {
+    "key": "sudarshan_news",
+    "name": "Sudarshan News",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "surya_samachar",
+    "name": "Surya Samachar",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 401 + stealth:401): https://suryasamachar.com/"
+    ]
+  },
+  {
+    "key": "wion",
+    "name": "WION",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 14,
+    "notes": []
+  },
+  {
+    "key": "et_now",
+    "name": "ET Now",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "et_now_swadesh",
+    "name": "ET Now Swadesh",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "zee_business",
+    "name": "Zee Business",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 7,
+    "notes": []
+  },
+  {
+    "key": "ndtv_profit",
+    "name": "NDTV Profit",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "tv5_telugu",
+    "name": "TV5 Telugu",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 403 + stealth:403): https://www.tv5news.in/"
+    ]
+  },
+  {
+    "key": "sakshi_tv",
+    "name": "Sakshi TV",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 403 + stealth:403): https://www.sakshi.com/"
+    ]
+  },
+  {
+    "key": "t_news",
+    "name": "T News",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP SSLError + stealth:stealth-error): https://tnewstelugu.com/"
+    ]
+  },
+  {
+    "key": "99tv",
+    "name": "99TV",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page loaded but 0 article links found: https://99tv.in/"
+    ]
+  },
+  {
+    "key": "public_tv",
+    "name": "Public TV",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "suvarna_news",
+    "name": "Suvarna News",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 503 + stealth:503): https://www.suvarnanews.tv/"
+    ]
+  },
+  {
+    "key": "news18_kannada",
+    "name": "News18 Kannada",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 16,
+    "notes": []
+  },
+  {
+    "key": "news18_tamil_nadu",
+    "name": "News18 Tamil Nadu",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "sun_news",
+    "name": "Sun News",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page loaded but 0 article links found: https://www.sunnewslive.in/"
+    ]
+  },
+  {
+    "key": "polimer_news",
+    "name": "Polimer News",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 51,
+    "notes": []
+  },
+  {
+    "key": "jaya_plus",
+    "name": "Jaya Plus",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page loaded but 0 article links found: https://www.jayaplus.com/"
+    ]
+  },
+  {
+    "key": "news_tamil_24x7",
+    "name": "News Tamil 24x7",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 21,
+    "notes": []
+  },
+  {
+    "key": "raj_news_tamil",
+    "name": "Raj News Tamil",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 525 + stealth:525): https://www.rajnewstamil.com/"
+    ]
+  },
+  {
+    "key": "news18_kerala",
+    "name": "News18 Kerala",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 36,
+    "notes": []
+  },
+  {
+    "key": "zee_24_ghanta",
+    "name": "Zee 24 Ghanta",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 15,
+    "notes": []
+  },
+  {
+    "key": "news18_bangla",
+    "name": "News18 Bangla",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 25,
+    "notes": []
+  },
+  {
+    "key": "kolkata_tv",
+    "name": "Kolkata TV",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 19,
+    "notes": []
+  },
+  {
+    "key": "cn_news",
+    "name": "CN News",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 9,
+    "notes": []
+  },
+  {
+    "key": "news18_lokmat",
+    "name": "News18 Lokmat",
+    "status": "ok",
+    "via": "general-feed/fast",
+    "items_found": 181,
+    "notes": []
+  },
+  {
+    "key": "zee_24_taas",
+    "name": "Zee 24 Taas",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 36,
+    "notes": []
+  },
+  {
+    "key": "saam_tv",
+    "name": "Saam TV",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 14,
+    "notes": []
+  },
+  {
+    "key": "zee_24_kalak",
+    "name": "Zee 24 Kalak",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "news18_gujarati",
+    "name": "News18 Gujarati",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 14,
+    "notes": []
+  },
+  {
+    "key": "vtv_gujarati",
+    "name": "VTV Gujarati",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 60,
+    "notes": []
+  },
+  {
+    "key": "kanak_news",
+    "name": "Kanak News",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 54,
+    "notes": []
+  },
+  {
+    "key": "news18_odia",
+    "name": "News18 Odia",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 17,
+    "notes": []
+  },
+  {
+    "key": "kalinga_tv",
+    "name": "Kalinga TV",
+    "status": "ok",
+    "via": "latest-page/stealth",
+    "items_found": 27,
+    "notes": []
+  },
+  {
+    "key": "news18_punjab_haryana_himachal",
+    "name": "News18 Punjab Haryana Himachal",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 26,
+    "notes": []
+  },
+  {
+    "key": "chardikla_time_tv",
+    "name": "Chardikla Time TV",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page loaded but 0 article links found: https://chardiklatimetv.com/"
+    ]
+  },
+  {
+    "key": "assam_talks",
+    "name": "Assam Talks",
+    "status": "ok",
+    "via": "page/fast",
+    "items_found": 15,
+    "notes": [
+      "feed returned no entries (HTTP 200): https://assamtalks.com/feed/"
+    ]
+  },
+  {
+    "key": "news18_rajasthan",
+    "name": "News18 Rajasthan",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 54,
+    "notes": []
+  },
+  {
+    "key": "news18_uttar_pradesh_uttarakhand",
+    "name": "News18 Uttar Pradesh Uttarakhand",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 59,
+    "notes": []
+  },
+  {
+    "key": "news18_bihar_jharkhand",
+    "name": "News18 Bihar Jharkhand",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 53,
+    "notes": []
+  },
+  {
+    "key": "news18_madhya_pradesh_chhattisgarh",
+    "name": "News18 Madhya Pradesh Chhattisgarh",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 54,
+    "notes": []
+  },
+  {
+    "key": "zee_rajasthan",
+    "name": "Zee Rajasthan",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/rajasthan/",
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/rajasthan"
+    ]
+  },
+  {
+    "key": "zee_bihar_jharkhand",
+    "name": "Zee Bihar Jharkhand",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/bihar-jharkhand/",
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/bihar-jharkhand"
+    ]
+  },
+  {
+    "key": "zee_madhya_pradesh_chhattisgarh",
+    "name": "Zee Madhya Pradesh Chhattisgarh",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/madhya-pradesh/",
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/madhya-pradesh"
+    ]
+  },
+  {
+    "key": "zee_uttar_pradesh_uttarakhand",
+    "name": "Zee Uttar Pradesh Uttarakhand",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/uttar-pradesh/",
+      "latest page blocked (HTTP 404 + stealth:404): https://zeenews.india.com/hindi/india/uttar-pradesh"
+    ]
+  },
+  {
+    "key": "jan_tv",
+    "name": "Jan TV",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page loaded but 0 article links found: https://jantv.in/"
+    ]
+  },
+  {
+    "key": "ibc24",
+    "name": "IBC24",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 25,
+    "notes": []
+  },
+  {
+    "key": "bansal_news",
+    "name": "Bansal News",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 36,
+    "notes": []
+  },
+  {
+    "key": "jk_media",
+    "name": "JK Media",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "latest page blocked (HTTP 500 + stealth:500): https://jkmedia.in/"
+    ]
+  },
+  {
+    "key": "vijay_karnataka",
+    "name": "Vijay Karnataka",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 18,
+    "notes": []
+  },
+  {
+    "key": "udayavani",
+    "name": "Udayavani",
+    "status": "ok",
+    "via": "latest-page/stealth",
+    "items_found": 20,
+    "notes": []
+  },
+  {
+    "key": "press_trust_of_india",
+    "name": "Press Trust of India",
+    "status": "fail",
+    "via": null,
+    "items_found": 0,
+    "notes": [
+      "page loaded but 0 article links found: https://www.ptinews.com/national",
+      "page loaded but 0 article links found: https://www.ptinews.com/"
+    ]
+  },
+  {
+    "key": "united_news_of_india",
+    "name": "United News of India",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 13,
+    "notes": []
+  },
+  {
+    "key": "prasar_bharati",
+    "name": "Prasar Bharati",
+    "status": "ok",
+    "via": "latest-page/fast",
+    "items_found": 7,
+    "notes": []
+  }
+]
