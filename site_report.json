@@ -12,7 +12,7 @@
     "name": "Times of India",
     "status": "ok",
     "via": "feed/fast",
-    "items_found": 20,
+    "items_found": 19,
     "notes": []
   },
   {
@@ -28,7 +28,7 @@
     "name": "India Today",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 6,
+    "items_found": 8,
     "notes": []
   },
   {
@@ -72,7 +72,7 @@
     "name": "Zee News (Hindi)",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 25,
+    "items_found": 23,
     "notes": []
   },
   {
@@ -144,7 +144,7 @@
     "name": "Dainik Bhaskar",
     "status": "ok",
     "via": "feed/fast",
-    "items_found": 57,
+    "items_found": 48,
     "notes": []
   },
   {
@@ -184,7 +184,7 @@
     "name": "Eenadu",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 37,
+    "items_found": 42,
     "notes": []
   },
   {
@@ -192,7 +192,7 @@
     "name": "Malayala Manorama",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 26,
+    "items_found": 27,
     "notes": []
   },
   {
@@ -224,7 +224,7 @@
     "name": "Lokmat",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 9,
+    "items_found": 10,
     "notes": []
   },
   {
@@ -232,7 +232,7 @@
     "name": "Gujarat Samachar",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 9,
+    "items_found": 10,
     "notes": []
   },
   {
@@ -550,7 +550,7 @@
     "name": "Business Today",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 18,
+    "items_found": 17,
     "notes": []
   },
   {
@@ -574,7 +574,7 @@
     "name": "V6 News",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 28,
+    "items_found": 27,
     "notes": []
   },
   {
@@ -718,7 +718,7 @@
     "name": "Scroll.in",
     "status": "ok",
     "via": "page/fast",
-    "items_found": 6,
+    "items_found": 4,
     "notes": []
   },
   {
@@ -766,7 +766,7 @@
     "name": "Live Hindustan",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 41,
+    "items_found": 38,
     "notes": [
       "feed blocked (HTTP 503): https://www.livehindustan.com/rss/national/rssfeed.xml"
     ]
@@ -776,7 +776,7 @@
     "name": "Patrika",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 17,
+    "items_found": 18,
     "notes": [
       "feed blocked (HTTP 522): https://api.patrika.com/rss/india-news"
     ]
@@ -863,9 +863,11 @@
     "key": "thequint",
     "name": "The Quint",
     "status": "ok",
-    "via": "general-feed/fast",
-    "items_found": 1,
-    "notes": []
+    "via": "latest-page/fast",
+    "items_found": 10,
+    "notes": [
+      "general feed returned no entries (HTTP 200): https://www.thequint.com/feed"
+    ]
   },
   {
     "key": "thebetterindia",
@@ -879,9 +881,11 @@
     "key": "frontline",
     "name": "Frontline",
     "status": "ok",
-    "via": "general-feed/fast",
-    "items_found": 46,
-    "notes": []
+    "via": "latest-page/fast",
+    "items_found": 42,
+    "notes": [
+      "general feed blocked (HTTP Timeout): https://frontline.thehindu.com/feeder/default.rss"
+    ]
   },
   {
     "key": "opindia",
@@ -931,7 +935,7 @@
     "name": "Free Press Journal",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 23,
+    "items_found": 11,
     "notes": []
   },
   {
@@ -939,7 +943,7 @@
     "name": "Maharashtra Times",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 21,
+    "items_found": 22,
     "notes": []
   },
   {
@@ -987,7 +991,7 @@
     "name": "Outlook India",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 33,
+    "items_found": 32,
     "notes": []
   },
   {
@@ -1011,7 +1015,7 @@
     "name": "Deccan Chronicle",
     "status": "ok",
     "via": "general-feed/fast",
-    "items_found": 58,
+    "items_found": 56,
     "notes": []
   },
   {
@@ -1180,7 +1184,7 @@
     "name": "News18 Kannada",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 18,
+    "items_found": 17,
     "notes": []
   },
   {
@@ -1188,7 +1192,7 @@
     "name": "News18 Tamil Nadu",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 23,
+    "items_found": 21,
     "notes": []
   },
   {
@@ -1242,7 +1246,7 @@
     "name": "News18 Kerala",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 39,
+    "items_found": 38,
     "notes": []
   },
   {
@@ -1258,7 +1262,7 @@
     "name": "News18 Bangla",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 26,
+    "items_found": 28,
     "notes": []
   },
   {
@@ -1384,7 +1388,7 @@
     "name": "News18 Rajasthan",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 52,
+    "items_found": 53,
     "notes": []
   },
   {
@@ -1470,7 +1474,7 @@
     "name": "IBC24",
     "status": "ok",
     "via": "latest-page/fast",
-    "items_found": 25,
+    "items_found": 23,
     "notes": []
   },
   {
@@ -1504,7 +1508,7 @@
     "name": "Udayavani",
     "status": "ok",
     "via": "latest-page/stealth",
-    "items_found": 24,
+    "items_found": 30,
     "notes": []
   },
   {
